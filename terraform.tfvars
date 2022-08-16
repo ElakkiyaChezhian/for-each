@@ -1,6 +1,6 @@
 project_id = "internal-test-prj-ly"
-google_compute_network = "nila-network"
-google_compute_global_address="apigee-range3"
+google_compute_network = "ni-network"
+google_compute_global_address="apigee-range4"
 region="us-east1"
 google_apigee_environment="ela-environment"
 google_apigee_envgroup="ela-envgroup"

@@ -49,12 +49,12 @@ resource "google_apigee_envgroup" "env_grp_dev1" {
   hostnames = ["grp.test.com"]
   org_id    = google_apigee_organization.apigeex_org.id
 }
-locals {
+location {
   regions = toset(["us-central1", "us-east4","us-east1"])
 }
 resource "google_apigee_instance" "apigee_instance1" {
 for_each     = locals.regions
-name         ="tf-PROD%{random_suffix}-instance-${each.value}""
+name         ="tf-PROD%-instance-${each.value}""
 location     = each.value
 org_id   = google_apigee_organization.apigeex_org.id
 }

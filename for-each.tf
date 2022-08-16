@@ -22,9 +22,7 @@ locals {
    "compute.googleapis.com",
    "servicenetworking.googleapis.com"
  ]
- }
-locations {
-     regions = toset(["us-central1", "us-east4","us-east1"])
+    regions = toset(["us-central1", "us-east4","us-east1"])
 }
 resource "google_project_service" "apis" {
      for_each           = toset(local.googleapis)
@@ -53,7 +51,7 @@ resource "google_apigee_envgroup" "env_grp_dev1" {
   org_id    = google_apigee_organization.apigeex_org.id
 }
 resource "google_apigee_instance" "apigee_instance1" {
-for_each     = toset(locations.regions)
+for_each     = locals.regions
 name         ="tf-PROD%-instance-${each.value}" 
 location     = each.value
 org_id   = google_apigee_organization.apigeex_org.id

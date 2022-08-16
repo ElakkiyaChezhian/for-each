@@ -2,7 +2,7 @@ provider "google" {
     project = var.project_id
 }
 resource "google_compute_network" "apigee_network1" {
-  name       = var.network
+  name       = var.google_compute_network
 }
 resource "google_compute_global_address" "apigee_range1" {
   name          = var.google_compute_global_address
@@ -49,29 +49,14 @@ resource "google_apigee_envgroup" "env_grp_dev1" {
   hostnames = ["grp.test.com"]
   org_id    = google_apigee_organization.apigeex_org.id
 }
+locals {
+  regions = toset(["us-central1", "us-east4","us-east1"])
+}
 resource "google_apigee_instance" "apigee_instance1" {
-for_each = {
-    location_1 = "us-east1"
-    location_2 = "us-west1"
-    location_3=  "us-central1"
-  }
-  name     = each.key
-  location = each.value
-  name     = var.google_apigee_instance
-  location = var.region
-  org_id   = google_apigee_organization.apigeex_org.id
-}
-resource "google_apigee_instance" "apigee_instance2" {
-name = location_1
-location = "us-east1"
-}
-resource "google_apigee_instance" "apigee_instance3"{
-name = location_2
-location = "us-west1"
-}
-resource "google_apigee_instance" "apigee_instance4"{
-name = location_3
-location = "us-central1"
+for_each     = locals.regions
+name         ="tf-PROD%{random_suffix}-instance-${each.value}""
+location     = each.value
+org_id   = google_apigee_organization.apigeex_org.id
 }
 resource "google_apigee_instance_attachment" "apigee_instance_attachment1" {
   instance_id  = google_apigee_instance.apigee_instance1.id

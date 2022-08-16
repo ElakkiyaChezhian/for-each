@@ -20,7 +20,7 @@ locals {
     googleapis = [   "apigee.googleapis.com",
    "cloudkms.googleapis.com",
    "compute.googleapis.com",
-   "servicenetworking.googleapis.com"
+   "servicenetworking.googleapis.com",
     regions = toset(["us-central1", "us-east4","us-east1"])
  ]
  }

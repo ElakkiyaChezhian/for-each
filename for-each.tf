@@ -22,7 +22,7 @@ locals {
    "compute.googleapis.com",
    "servicenetworking.googleapis.com"
  ]
-    regions = ["us-central1", "us-east4","us-east1"]
+    regions = ["us-central1", "us-east4"]
 }
 resource "google_project_service" "apis" {
      for_each           = toset(local.googleapis)

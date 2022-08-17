@@ -58,7 +58,7 @@ org_id   = google_apigee_organization.apigeex_org.id
 }
 resource "google_apigee_instance_attachment" "apigee_instance_attachment" {
   for_each     = toset(local.regions)
-  instance_id  = google_apigee_instance.apigee_instance1.id
+  instance_id  = google_apigee_instance.apigee_instance1[each.key].id
   environment  = google_apigee_environment.apigee_org_region_env1.id
 }
 resource "google_compute_region_backend_service" "producer_service_backend1" {

@@ -56,6 +56,10 @@ name         = each.key
 location     = each.value
 org_id   = google_apigee_organization.apigeex_org.id
 }
+resource "google_apigee_instance_attachment" "instance_attachment" {
+  instance_id  = google_apigee_organization_instance.apigee_instance1.id
+  environment  = google_apigee_environment.apigee_env.name
+}
 resource "google_compute_region_backend_service" "producer_service_backend1" {
   name          = var.google_compute_region_backend_service
   project       = var.project_id

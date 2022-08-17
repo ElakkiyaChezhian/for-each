@@ -50,7 +50,7 @@ resource "google_apigee_envgroup" "env_grp_dev1" {
   hostnames = ["grp.test.com"]
   org_id    = google_apigee_organization.apigeex_org.id
 }
-resource "google_apigee_instance" "apigee_instance1" {
+resource "google_apigee_organization_instance" "apigee_instance1" {
 for_each     = local.regions
 name         = each.key
 location     = each.value

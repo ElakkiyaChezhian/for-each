@@ -13,6 +13,12 @@ variable "region" {
 variable"google_apigee_instance"{
     type = string
 }
+variable"regions"{
+    type =  type = map(object({
+    regions = list(string)
+    })
+          default = {}
+}
 variable "google_apigee_environment" {
     type = string
 }

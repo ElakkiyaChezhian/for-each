@@ -22,7 +22,7 @@ locals {
    "compute.googleapis.com",
    "servicenetworking.googleapis.com"
  ]
-    regions = toset(["us-central1", "us-east4","us-east1"])
+    regions = (["us-central1", "us-east4","us-east1"])
 }
 resource "google_project_service" "apis" {
      for_each           = toset(local.googleapis)
@@ -47,10 +47,10 @@ resource "google_apigee_environment" "apigee_org_region_env1" {
   instance_id  = google_apigee_instance.apigee_instance1.id
 }
 resource "google_apigee_envgroup" "env_grp_dev1" {
-  name      = var.google_apigee_envgroup
-  hostnames = ["grp.test.com"]
-  org_id    = google_apigee_organization.apigeex_org.id
-  instance_id  = google_apigee_instance.apigee_instance1.id
+  name        = var.google_apigee_envgroup
+  hostnames   = ["grp.test.com"]
+  org_id      = google_apigee_organization.apigeex_org.id
+  instance_id = google_apigee_instance.apigee_instance1.id
 }
 resource "google_apigee_instance" "apigee_instance1" {
 for_each     = toset(local.regions)

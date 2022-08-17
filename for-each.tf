@@ -44,20 +44,24 @@ resource "google_apigee_environment" "apigee_org_region_env1" {
   description  = "apigee-env-dev"
   display_name = "apigee-env-dev"
   org_id       = google_apigee_organization.apigeex_org.id
+  instance_id  = google_apigee_instance.apigee_instance1.id
 }
 resource "google_apigee_envgroup" "env_grp_dev1" {
   name      = var.google_apigee_envgroup
   hostnames = ["grp.test.com"]
   org_id    = google_apigee_organization.apigeex_org.id
+  instance_id  = google_apigee_instance.apigee_instance1.id
 }
 resource "google_apigee_instance" "apigee_instance1" {
-for_each     = local.regions
+for_each     = toset(local.regions)
 name         = each.key
 location     = each.value
 org_id   = google_apigee_organization.apigeex_org.id
+depends on   = [
+    google_apigee_instance_attachment.instance_attachment,
+    ]
 }
 resource "google_apigee_instance_attachment" "instance_attachment" {
-  for_each     =toset(local.regions)
   instance_id  = google_apigee_instance.apigee_instance1.id
   environment  = google_apigee_environment.apigee_org_region_env1.name
 }

@@ -52,7 +52,7 @@ resource "google_apigee_envgroup" "env_grp_dev1" {
 }
 resource "google_apigee_instance" "apigee_instance1" {
 for_each     = toset(local.regions)
-name         = each.key
+name         = var.google_apigee_instance[${each.name}]
 location     = each.value
 org_id   = google_apigee_organization.apigeex_org.id
 }

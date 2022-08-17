@@ -2,15 +2,6 @@ project_id = "internal-test-prj-ly"
 google_compute_network = "updated-network"
 google_compute_global_address="updated-range"
 region="us-east1"
-regions =["us-central1","us-east4"]
-google_apigee_instance = {
-  euw1-instance = {
-    regions       = "us-east4"
-  }
-  ec1-instance ={
-    regions = "us-cental-1"
-  }
-}
 google_apigee_environment="updated-environment"
 google_apigee_envgroup="updated-envgroup"
 google_compute_region_backend_service="updated-service"

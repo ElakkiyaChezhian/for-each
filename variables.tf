@@ -10,6 +10,9 @@ variable "google_compute_global_address" {
 variable "region" {
     type = string
 }
+variable"google_apigee_instance"{
+    type = string
+}
 variable "google_apigee_environment" {
     type = string
 }
